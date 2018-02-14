@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -38,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUSer(){
-        String username = editTextUsername.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Constants.URL_REGISTER,
@@ -58,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("email", email);
+                params.put("password", password);
+                return params;
             }
         };
 
