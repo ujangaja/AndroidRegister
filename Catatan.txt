@@ -1,2 +1,5 @@
 menambahkan dependensi
 -https://bintray.com/android/android-utils/com.android.volley.volley
+
+-Requesthandler:
+	https://developer.android.com/training/volley/requestqueue.html
