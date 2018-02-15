@@ -22,9 +22,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText editTextUsername ,editTextPassword,editTextEmail;
+    private EditText editTextUsername,editTextPassword,editTextEmail;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
 
@@ -33,23 +33,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextUsername = (EditText)findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText)findViewById(R.id.editTextPassword);
-        editTextEmail = (EditText)findViewById(R.id.editTextEmail);
+        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
 
-        buttonRegister = (Button)findViewById(R.id.buttonRegister);
-
+        buttonRegister = (Button) findViewById(R.id.buttonRegister);
         progressDialog = new ProgressDialog(this);
-
         buttonRegister.setOnClickListener(this);
-    }
 
-    private void registerUSer(){
+
+    }
+    private void registerUser(){
         final String username = editTextUsername.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
 
-        progressDialog.setMessage("Register User....");
+        progressDialog.setMessage("Register User...");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -58,9 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-
                         try {
-                            JSONObject  jsonObject = new JSONObject(response);
+                            JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -76,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("email", email);
-                params.put("password", password);
+                Map<String,String> params = new HashMap<>();
+                params.put("username",username);
+                params.put("password",password);
+                params.put("email",email);
                 return params;
             }
         };
@@ -89,6 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == buttonRegister)
-        registerUSer();
+            registerUser();
     }
 }

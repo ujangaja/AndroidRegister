@@ -19,7 +19,6 @@ public class RequestHandler {
         mCtx = context;
         mRequestQueue = getRequestQueue();
 
-
     }
 
     public static synchronized RequestHandler getInstance(Context context) {
@@ -44,5 +43,3 @@ public class RequestHandler {
 
 
 }
-
-
